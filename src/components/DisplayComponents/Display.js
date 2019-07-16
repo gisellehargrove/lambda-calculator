@@ -1,7 +1,11 @@
 import React from "react";
 
 const Display = (props) => {
-  return <div>{props.total}</div>;
+  return <div className="display">
+      <span>
+        {props.total}
+      </span>
+  </div>;
 };
 
 export default Display;

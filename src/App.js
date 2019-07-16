@@ -18,14 +18,42 @@ function App() {
   // Don't forget to pass the functions (and any additional data needed) to the components as props
   const [displayAmt, setDisplayAmt] = useState('');
   const [operator, setOperator] = useState('');
+  const [values, setValues] = useState([]);
+  const [operatorList, setOperatorList] = useState([]);
+  const [total, updateTotal] = useState(0);
 
   const updateDisplay = (str) => {
     setDisplayAmt(displayAmt + str);
   };
 
+  const getTotal = () => {
+    let totalAmount = values[0];
+    // values.forEach((value, index) => {
+    //   if(operator === '+') {
+    //     totalAmount+=values[index + 1];
+    //     setDisplayAmt(totalAmount.toString());
+    //     updateTotal(totalAmount);
+    //   } else if (operator === '-') {
+    //
+    //   } else if (operator === '/') {
+    //
+    //   } else if (operator === '%') {
+    //
+    //   }
+    // });
+  }
+
   const updateOperator = (str) => {
-    setOperator(str);
-    setDisplayAmt(displayAmt + str);
+    if(str === '=') {
+      // values.push(parseFloat(displayAmt))
+      // setValues(values);
+      getTotal();
+    } else {
+      setDisplayAmt(displayAmt + str);
+      setOperator(str);
+      values.push(parseFloat(displayAmt));
+      setValues(values);
+    }
   }
 
   return (
@@ -34,9 +62,10 @@ function App() {
       <div className="App">
         {/* STEP 4 - Render your components here and be sure to properly import/export all files */}
         <Display total={displayAmt} />
+
+        <Specials update={updateDisplay} />
         <Numbers update={updateDisplay} />
         <Operators update={updateOperator} />
-        <Specials update={updateDisplay} />
       </div>
     </div>
   );
