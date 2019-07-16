@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 // STEP 4 - import the button and display components
 // Don't forget to import any extra css/scss files you build into the correct component
+import Numbers from './components/ButtonComponents/NumberButtons/Numbers.js';
+import Operators from './components/ButtonComponents/OperatorButtons/Operators.js';
+import Specials from './components/ButtonComponents/SpecialButtons/Specials.js';
+import Display from './components/DisplayComponents/Display.js';
 
 // Logo has already been provided for you. Do the same for the remaining components
 import Logo from "./components/DisplayComponents/Logo";
@@ -12,12 +16,56 @@ function App() {
   // Your functions should accept a parameter of the the item data being displayed to the DOM (ie - should recieve 5 if the user clicks on
   // the "5" button, or the operator if they click one of those buttons) and then call your setter function to update state.
   // Don't forget to pass the functions (and any additional data needed) to the components as props
+  const [displayAmt, setDisplayAmt] = useState('');
+  const [operator, setOperator] = useState('');
+  const [values, setValues] = useState([]);
+  const [operatorList, setOperatorList] = useState([]);
+  const [total, updateTotal] = useState(0);
+
+  const updateDisplay = (str) => {
+    setDisplayAmt(displayAmt + str);
+  };
+
+  const getTotal = () => {
+    let totalAmount = values[0];
+    // values.forEach((value, index) => {
+    //   if(operator === '+') {
+    //     totalAmount+=values[index + 1];
+    //     setDisplayAmt(totalAmount.toString());
+    //     updateTotal(totalAmount);
+    //   } else if (operator === '-') {
+    //
+    //   } else if (operator === '/') {
+    //
+    //   } else if (operator === '%') {
+    //
+    //   }
+    // });
+  }
+
+  const updateOperator = (str) => {
+    if(str === '=') {
+      // values.push(parseFloat(displayAmt))
+      // setValues(values);
+      getTotal();
+    } else {
+      setDisplayAmt(displayAmt + str);
+      setOperator(str);
+      values.push(parseFloat(displayAmt));
+      setValues(values);
+    }
+  }
 
   return (
     <div className="container">
       <Logo />
       <div className="App">
         {/* STEP 4 - Render your components here and be sure to properly import/export all files */}
+        <Display total={displayAmt} />
+
+        <Specials update={updateDisplay} />
+        <Numbers update={updateDisplay} />
+        <Operators update={updateOperator} />
       </div>
     </div>
   );

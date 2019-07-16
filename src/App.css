@@ -1,0 +1,65 @@
+body {
+  display: flex;
+}
+
+#root {
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: red;
+  width: 400px;
+  height: 700px;
+}
+
+.logo-container {
+  margin: 10px;
+}
+
+.display {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 0 auto;
+  height: 100px;
+  width: 375px;
+  border-radius: 50px;
+  background-color: black;
+  color: white;
+}
+
+.display span {
+  position: relative;
+  top: 25px;
+  right: 45px;
+  font-size: 45px;
+}
+
+.specials-container {
+  width: 300px;
+}
+
+.specials-container button {
+  height: 65px;
+  width: 65px;
+  border-radius: 100%;
+  margin: 20px 15px;
+  background-color: dodgerblue;
+  color: white;
+  font-size: 15px;
+}
+
+.numbers-container {
+  width: 300px;
+}
+
+.numbers-container button {
+  height: 65px;
+  width: 65px;
+  border-radius: 100%;
+  margin: 10px 10px 10px 20px;
+  background-color: darkblue;
+  color: white;
+  font-size: 15px;
+}
